@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
-
+from .models import PostInput
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -49,5 +49,15 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+
+def savedata(request):
+
+    if request.method == "POST":
+        post = PostInput()
+        post.name = request.POST.get("name")
+        post.date = request.POST.get("date")
+        post.hour = request.POST.get("hour")
+        post.save()
 
 # Create your views here.
