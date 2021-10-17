@@ -17,7 +17,7 @@ def pages(request):
     try:
         load_template = request.path.split('/')[-1]
 
-l@ogin_required(login_url="/login/")
+@login_required(login_url="/login/")
 def pages(request):
     context = {}
     # All resource paths end in .html.
