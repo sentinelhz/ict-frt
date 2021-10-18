@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 from .models import PostInput
+from django.views.decorators.csrf import csrf_exempt
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -50,7 +51,7 @@ def register_user(request):
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
-
+@csrf_exempt
 def savedata(request):
 
     if request.method == "POST":
