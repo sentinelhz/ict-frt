@@ -1,14 +1,36 @@
-# faceRecognition
+Jetson Nano base customized facil attendance edge device application and docker microservices.This code is the open source code for edge deployment of attendace kit built specifically for jetson nano with Gstreamer pipeline, Video capture buffer using CPython buffer and GIL , OpenCv LBHPrecognizer yml file that acts as the training model histogram for each user in a company.
 
-This repository contains code for facial recognition using openCV and python with a tkinter gui interface on "JETSON NANO BOARD"  If you want to test the code then run train.py file
+
+
 ########################################################################################################################################
 Technology used :
--openCV (Opensource Computer Vision)(I m having cv2 version 3.2.0)
+OpenCV: (Opensource Computer Vision)(I m having cv2 version 4.5.2 built with cudann and CUDA compilation built on osurce with TensorRT, Keras, gstreamer spipeline which is  not availble on Jetpack 4.6 by default as OPENCV doesnt support gstreamer and cudalib.)
 -Python(I am using Python 3.6.9)
--tkinter GUI interface(8.6)
+-Default Jetpack 4.6
+-nvarguscamera gst pipeline 
+-h.264 codec format video recording 
+-docker damemon
+-all the requirements are updated in the final-requirements.txt.
+-Remember this project although is built for quick deployment of facial recognition, the authors bear no warranty of the code and may decline support to thsi version in near future, We welcome all open source enthusiasts to raise Pull requests on the repo which will be verified by the core team before being merged. Join us on sentinelhz.tech on their Dsicord channel for issues or raise git issues for bugs on the repo.
+
+We couldnt have done this project without the open source community and hence would like to dedicate this working model to AI community worldwide.
+Before proceeding with the project please kindly understand the problems faced by the core design team  especially in enabling the accelerated videobuffering and frame read using the nvarguscamera pipeline to create a faster video inferencing to meet the faster recogniton demand.
+
+The follwing code and pipeline has been tested on 
+OPENCV HARCASCADE XML
+Dlib face recogniton
+DeepFace API 
+mtcnn TensorRT face-recogntion model
+OpenCv dnn (SSD FaceNet)
+
+We have found after repeated testing and speed inferencing using various face-recogniton models that OPENCV HARCASCADE and LBHPRecognizer to be the fastest among all the above with the specific gstreamer build.
+
+We will coming soon with the container registry for all our docker microservices that connect to our online web platform built on Django Framework and deployed on AWS cloud.
+
+Issues were faced by the design team in compiling the gstreamer and multithreading process for VideoCapture (src) assertion as queing frames for processing were leading to the crashing of the camera board.
 
 
-Here I am working on Face recognition based Attendance Management System by using OpenCV(Python). One can mark thier attendance by simply facing the camera. 
+
 #########################################################################################################################################
 How it works :
 
