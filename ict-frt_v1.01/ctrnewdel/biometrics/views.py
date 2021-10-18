@@ -59,5 +59,7 @@ def savedata(request):
         post.date = request.POST.get("date")
         post.hour = request.POST.get("hour")
         post.save()
+        return HttpResponse(200, "saved")
+    return HttpResponse(400)
 
 # Create your views here.
