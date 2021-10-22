@@ -18,6 +18,7 @@ from django.urls import path
 from django.contrib import admin
 from django.urls import path
 from home import urls
+#from biometrics import urls
 from django.conf.urls import  url ,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import biometrics.views as biomets
@@ -29,5 +30,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("home.urls")),
-    path("biomets/", biomets.savedata),
-]
+    path("biomets/", biomets.savedata)
+    ]
