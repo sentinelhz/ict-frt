@@ -1,0 +1,54 @@
+{% extends "layouts/base2.html" %}
+
+
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block content %}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title"> Attendance Tracker</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Hour
+                </th>
+
+            </thead>
+            {% for i in attendance %}
+            <tbody>
+              <tr>
+                <td>
+                  {{i.name}}
+                </td>
+                <td>
+                  {{i.date}}
+                </td>
+                <td>
+                  {{i.hour}}
+                </td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% endblock %}
