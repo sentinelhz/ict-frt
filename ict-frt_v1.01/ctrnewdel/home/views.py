@@ -15,6 +15,10 @@ from .forms import LoginForm, SignUpForm
 #from .models import PostInput
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+
+
 
 
 #@login_required(login_url="/login/")
@@ -24,10 +28,13 @@ def index(request):
     	html_template = loader.get_template('home/home.html')
     	return HttpResponse(html_template.render(context, request))
 
+def admindash(request):
+    context = {''}
+
 
 @csrf_exempt
 def login_view(request):
-    form = LoginForm(request.POST or None)
+    form = AuthenticationForm(request.POST)
 
     msg = None
 
@@ -39,22 +46,23 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+
+                return redirect("register")
             else:
                 msg = 'Invalid credentials'
         else:
             msg = 'Error validating the form'
 
-    return render(request, "home/login.html", {"form": form, "msg": msg})
+    return render(request, "home/home.html", {"form": form, "msg": msg})
 
 
 @csrf_exempt
 def register_user(request):
     msg = None
     success = False
-
+    form = UserCreationForm()
     if request.method == "POST":
-        form = SignUpForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get("username")
@@ -64,12 +72,12 @@ def register_user(request):
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
 
-            # return redirect("/login/")
+            return redirect("/login")
 
         else:
             msg = 'Form is not valid'
     else:
-        form = SignUpForm()
+        form = UserCreationForm()
 
     return render(request, "home/register.html", {"form": form, "msg": msg, "success": success})
 
