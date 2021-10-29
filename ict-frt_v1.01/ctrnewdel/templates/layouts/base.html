@@ -29,12 +29,14 @@
 
 <body class="">
   <div class="wrapper">
+    {% include 'includes/sidebar1.html' %}
 
-    {% include 'includes/navigation.html' %}
+
 
 
 
     <div class="main-panel">
+        {% include 'includes/navigation.html' %}
       <div class="content">
 
         {% block content %}{% endblock content %}

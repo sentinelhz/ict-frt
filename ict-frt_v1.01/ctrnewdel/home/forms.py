@@ -21,7 +21,7 @@ class LoginForm(forms.Form):
         ))
 
 
-class SignUpForm(UserCreationForm):
+class CreateUserForm(UserCreationForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
