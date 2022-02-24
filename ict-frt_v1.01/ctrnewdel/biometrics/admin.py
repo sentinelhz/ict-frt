@@ -4,3 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(User_profile)
 admin.site.register(PostInput)
+admin.ste.register(MobileInput)
