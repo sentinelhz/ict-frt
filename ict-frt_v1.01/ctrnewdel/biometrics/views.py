@@ -25,10 +25,12 @@ def savedata(request):
 @csrf_exempt
 def storedata(request):
 
-
     if request.method == "POST":
-        form = AttendanceForm()
+        form = AttendanceForm(request.POST)
         if form.is_valid():
             attendance = form.save()
-            return HttpResponse(200, "saved")
-    return HttpResponse(400)
+            return HttpResponse("saved", status=200)
+        else:
+            return HttpResponse("error", status=400)
+
+    return HttpResponse("hi")
