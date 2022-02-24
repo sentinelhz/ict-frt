@@ -5,6 +5,7 @@ from .forms import LoginForm, SignUpForm
 from .models import PostInput
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .forms import AttendanceForm
 
 
 @csrf_exempt
@@ -18,4 +19,16 @@ def savedata(request):
         post.hour = data["hour"]
         post.save()
         return HttpResponse(200, "saved")
+    return HttpResponse(400)
+
+
+@csrf_exempt
+def storedata(request):
+
+
+    if request.method == "POST":
+        form = AttendanceForm()
+        if form.is_valid():
+            attendance = form.save()
+            return HttpResponse(200, "saved")
     return HttpResponse(400)
